@@ -1,4 +1,5 @@
 package edu.ncsu.csc326.coffeemaker;
+import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 
 public class RecipeBook {
 	
@@ -63,6 +64,7 @@ public class RecipeBook {
 					for (int j = i; j < recipeArray.length - 1; j++) {
 						recipeArray[j] = recipeArray[j + 1];
 					}
+					recipeArray[recipeArray.length-1] = null;
 					break;
 				}
 			}			
@@ -79,7 +81,7 @@ public class RecipeBook {
 	 * @param newRecipe
 	 * @return String
 	 */
-	public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) {
+	public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) throws RecipeException {
 		if (recipeArray[recipeToEdit] != null) {
 			String recipeName = recipeArray[recipeToEdit].getName();
 			newRecipe.setName(recipeName);

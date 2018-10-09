@@ -21,7 +21,7 @@ public class Main {
      * main menu commands.
      */
     public static void mainMenu() {
-        System.out.println("1####. Add a recipe");
+        System.out.println("1. Add a recipe");
         System.out.println("2. Delete a recipe");
         System.out.println("3. Edit a recipe");
         System.out.println("4. Add inventory");
@@ -35,7 +35,7 @@ public class Main {
         try {
         	int userInput = Integer.parseInt(inputOutput("Please press the number that corresponds to what you would like the coffee maker to do."));
         	
-        	if (userInput >= 0 && userInput <=6) {
+        	if (userInput >= 0 && userInput <=7) {
 		        if (userInput == 1) addRecipe();
 		        if (userInput == 2) deleteRecipe();
 		        if (userInput == 3) editRecipe();
@@ -44,11 +44,11 @@ public class Main {
 		        if (userInput == 6) makeCoffee();
 		        if (userInput == 7) System.exit(0); //pull request testing
         	} else {
-        		System.out.println("Please enter a number from 0 - 6");
+        		System.out.println("Please enter a number from 0 - 7");
             	mainMenu();
         	}
         } catch (NumberFormatException e) {
-        	System.out.println("Please enter a number from 0 - 6");
+        	System.out.println("Please enter a number from 0 - 7");
         	mainMenu();
         }
     }
@@ -218,41 +218,42 @@ public class Main {
      */
     public static void makeCoffee() {
         Recipe [] recipes = coffeeMaker.getRecipes();
-	boolean recipeFound=false;
+	      boolean recipeFound=false;
+      
         for(int i = 0; i < recipes.length; i++) {
-        	if (recipes[i] != null) {
+          if (recipes[i] != null) {
         		System.out.println((i+1) + ". " + recipes[i].getName());
-			recipeFound=true;
+			      recipeFound=true;
         	}
         }
-	    
+      
         if(recipeFound==false) {
         	System.out.println("No recipe found!");
         	mainMenu();
         }
 	
-	else{	
-		int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
+        else{	
+          int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
 
-		String amountPaid = inputOutput("Please enter the amount you wish to pay");
-		int amtPaid = 0;
-		try {
-			amtPaid = Integer.parseInt(amountPaid);
-		} catch (NumberFormatException e) {
-			System.out.println("Please enter a positive integer");
-			mainMenu();
-		}
+          String amountPaid = inputOutput("Please enter the amount you wish to pay");
+          int amtPaid = 0;
+          try {
+            amtPaid = Integer.parseInt(amountPaid);
+          } catch (NumberFormatException e) {
+            System.out.println("Please enter a positive integer");
+            mainMenu();
+          }
 
-		int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
+          int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
 
-		if (change == amtPaid) {
-			System.out.println("Insufficient funds to purchase.");
-		} else {
-			System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());
-		}
-		System.out.println("Your change is: " + change + "\n");
-		mainMenu();
-	}
+          if (change == amtPaid) {
+            System.out.println("Insufficient funds to purchase.");
+          } else {
+            System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());
+          }
+          System.out.println("Your change is: " + change + "\n");
+          mainMenu();
+        }
     }
     
     /**
@@ -286,13 +287,11 @@ public class Main {
     	int recipe = 0;
         try {
         	recipe = Integer.parseInt(userSelection) - 1;
-        	if (recipe >= 0 && recipe <=2) {
-        		//do nothing here.
-        	} else {
-        		recipe = -1;
+        	if (recipe < 0 || recipe > 3) {
+        		throw new NumberFormatException();
         	}
         } catch (NumberFormatException e) {
-        	System.out.println("Please select a number from 1-3.");
+        	System.out.println("Please select a number from 1-4.");
         	recipe = -1;
         }
         return recipe;
