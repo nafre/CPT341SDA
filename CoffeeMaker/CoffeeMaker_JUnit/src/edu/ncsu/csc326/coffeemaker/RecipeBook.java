@@ -88,7 +88,8 @@ public class RecipeBook {
 			recipeArray[recipeToEdit] = newRecipe;
 			return recipeName;
 		} else {
-			return null;
+			// this method now directly throws exception instead of return null
+			throw new RecipeException("Null cannot be edited");
 		}
 	}
 

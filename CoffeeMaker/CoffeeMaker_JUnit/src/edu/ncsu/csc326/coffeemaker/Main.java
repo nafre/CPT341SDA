@@ -136,28 +136,32 @@ public class Main {
         	}
         }
         int recipeToEdit = recipeListSelection("Please select the number of the recipe to edit.");
+
+        try {
+        	// dummy line to test if edit is possible
+			// if recipeToEdit does not exist, throw exception, skip ahead
+			coffeeMaker.editRecipe(recipeToEdit, new Recipe());
         
-	    if(recipeToEdit < 0) {
-	    	mainMenu();
-	    }
-	    
-	    //Read in recipe price
-	    String priceString = inputOutput("\nPlease enter the recipe price: $");
-	    
-	    //Read in amt coffee
-	    String coffeeString = inputOutput("\nPlease enter the units of coffee in the recipe: ");
-	    
-	    //Read in amt milk
-	    String milkString = inputOutput("\nPlease enter the units of milk in the recipe: ");
-	    
-	    //Read in amt sugar
-	    String sugarString = inputOutput("\nPlease enter the units of sugar in the recipe: ");
-	    
-	    //Read in amt chocolate
-	    String chocolateString = inputOutput("\nPlease enter the units of chocolate in the recipe: ");
-	    
-	    Recipe newRecipe = new Recipe();
-	    try {
+			if(recipeToEdit < 0) {
+				mainMenu();
+			}
+
+			//Read in recipe price
+			String priceString = inputOutput("\nPlease enter the recipe price: $");
+
+			//Read in amt coffee
+			String coffeeString = inputOutput("\nPlease enter the units of coffee in the recipe: ");
+
+			//Read in amt milk
+			String milkString = inputOutput("\nPlease enter the units of milk in the recipe: ");
+
+			//Read in amt sugar
+			String sugarString = inputOutput("\nPlease enter the units of sugar in the recipe: ");
+
+			//Read in amt chocolate
+			String chocolateString = inputOutput("\nPlease enter the units of chocolate in the recipe: ");
+
+			Recipe newRecipe = new Recipe();
 			newRecipe.setPrice(priceString);
 			newRecipe.setAmtCoffee(coffeeString);
 			newRecipe.setAmtMilk(milkString);
@@ -165,13 +169,8 @@ public class Main {
 			newRecipe.setAmtChocolate(chocolateString);
 			
 			String recipeEdited = coffeeMaker.editRecipe(recipeToEdit, newRecipe);
-	        
-	        if (recipeEdited != null) {
-	        	System.out.println(recipeEdited + " successfully edited.\n");
-	        }
-		    else {
-		    	System.out.println(recipeEdited + "could not be edited.\n");
-		    }
+	        System.out.println(recipeEdited + " successfully edited.\n");
+
 		} catch (RecipeException e) {
 			System.out.println(e.getMessage());
 		} finally {
