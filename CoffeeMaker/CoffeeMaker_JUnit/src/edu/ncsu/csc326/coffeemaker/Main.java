@@ -259,10 +259,10 @@ public class Main {
 				}
 				else if (change == -2) {
 					System.out.println("An error occured: Insufficient resource in Inventory");
+					change = amtPaid;
 				}
     			else if (change == amtPaid) {
     				System.out.println("Insufficient funds to purchase.");
-					change = amtPaid;
     			} else {
     				System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());
     			}
