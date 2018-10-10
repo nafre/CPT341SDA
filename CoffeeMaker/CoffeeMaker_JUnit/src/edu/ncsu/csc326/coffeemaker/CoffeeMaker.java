@@ -95,7 +95,7 @@ public class CoffeeMaker {
         	if (inventory.useIngredients(getRecipes()[recipeToPurchase])) {
         		change = amtPaid - getRecipes()[recipeToPurchase].getPrice();
         	} else {
-        		change = amtPaid;
+        		change = -2; // temporary flag for insufficient resource
         	}
         } else {
         	change = amtPaid;
