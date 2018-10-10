@@ -235,7 +235,8 @@ public class Main {
         if(list_is_empty) {
         	System.out.println("Current coffee list is empty \n");
         	mainMenu();
-        }else {
+        }
+        else {
             System.out.println("\nYour Current Inventory :");
             System.out.println(coffeeMaker.checkInventory());
         	
@@ -253,12 +254,16 @@ public class Main {
 
     			int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
 
-    			if (change == amtPaid) {
+				if (change == -1) {
+					System.out.println("An error occured: Recipe does not exist");
+					change = amtPaid;
+				}
+    			else if (change == amtPaid) {
     				System.out.println("Insufficient funds to purchase.");
     			} else {
     				System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());
     			}
-    			System.out.println("Your change is: " + change + "\n");
+				System.out.println("Your change is: " + change + "\n");
     			mainMenu();
     		}
     		else mainMenu();

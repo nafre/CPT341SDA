@@ -90,7 +90,7 @@ public class CoffeeMaker {
     public synchronized int makeCoffee(int recipeToPurchase, int amtPaid) {
         int change = 0;
         if (getRecipes()[recipeToPurchase] == null) {
-        	change = amtPaid;
+        	change = -1; // temporary flag for non-existent recipe
         } else if (getRecipes()[recipeToPurchase].getPrice() <= amtPaid) {
         	if (inventory.useIngredients(getRecipes()[recipeToPurchase])) {
         		change = amtPaid - getRecipes()[recipeToPurchase].getPrice();
@@ -100,7 +100,6 @@ public class CoffeeMaker {
         } else {
         	change = amtPaid;
         }
-        
         return change;
     }
 
