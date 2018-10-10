@@ -64,6 +64,7 @@ public class RecipeBook {
 					for (int j = i; j < recipeArray.length - 1; j++) {
 						recipeArray[j] = recipeArray[j + 1];
 					}
+					recipeArray[recipeArray.length-1] = null;
 					break;
 				}
 			}			
