@@ -217,42 +217,51 @@ public class Main {
      * Make coffee user interface the processes input.
      */
     public static void makeCoffee() {
+    	
+    	Boolean list_is_empty = true;
         Recipe [] recipes = coffeeMaker.getRecipes();
-	      boolean recipeFound=false;
       
+        System.out.println("Coffee list:");
         for(int i = 0; i < recipes.length; i++) {
-          if (recipes[i] != null) {
-        		System.out.println((i+1) + ". " + recipes[i].getName());
-			      recipeFound=true;
+        	if (recipes[i] != null) {
+        		
+        		System.out.print((i+1) + ". " + recipes[i].getName());
+        		System.out.println(" (Chocalate:" +recipes[i].getAmtChocolate()+", Coffee:"+recipes[i].getAmtCoffee()
+        				+" ,Milk:"+recipes[i].getAmtMilk()+" ,Sugar:"+recipes[i].getAmtSugar()+", Price:"+recipes[i].getPrice() +")");
+        		list_is_empty = false;
         	}
         }
-      
-        if(recipeFound==false) {
-        	System.out.println("No recipe found!");
+        
+        if(list_is_empty) {
+        	System.out.println("Current coffee list is empty \n");
         	mainMenu();
-        }
-	
-        else{	
-          int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
+        }else {
+            System.out.println("\nYour Current Inventory :");
+            System.out.println(coffeeMaker.checkInventory());
+        	
+            int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
 
-          String amountPaid = inputOutput("Please enter the amount you wish to pay");
-          int amtPaid = 0;
-          try {
-            amtPaid = Integer.parseInt(amountPaid);
-          } catch (NumberFormatException e) {
-            System.out.println("Please enter a positive integer");
-            mainMenu();
-          }
+            if (recipeToPurchase != -1) {
+    			String amountPaid = inputOutput("Please enter the amount you wish to pay");
+    			int amtPaid = 0;
+    			try {
+    				amtPaid = Integer.parseInt(amountPaid);
+    			} catch (NumberFormatException e) {
+    				System.out.println("Please enter a positive integer");
+    				mainMenu();
+    			}
 
-          int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
+    			int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
 
-          if (change == amtPaid) {
-            System.out.println("Insufficient funds to purchase.");
-          } else {
-            System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());
-          }
-          System.out.println("Your change is: " + change + "\n");
-          mainMenu();
+    			if (change == amtPaid) {
+    				System.out.println("Insufficient funds to purchase.");
+    			} else {
+    				System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());
+    			}
+    			System.out.println("Your change is: " + change + "\n");
+    			mainMenu();
+    		}
+    		else mainMenu();
         }
     }
     
