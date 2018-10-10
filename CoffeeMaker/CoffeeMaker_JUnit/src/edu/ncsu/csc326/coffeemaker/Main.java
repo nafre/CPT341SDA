@@ -220,7 +220,7 @@ public class Main {
     	
     	Boolean list_is_empty = true;
         Recipe [] recipes = coffeeMaker.getRecipes();
-        
+      
         System.out.println("Coffee list:");
         for(int i = 0; i < recipes.length; i++) {
         	if (recipes[i] != null) {
@@ -263,7 +263,6 @@ public class Main {
     		}
     		else mainMenu();
         }
-       
     }
     
     /**
