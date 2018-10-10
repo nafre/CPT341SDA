@@ -218,13 +218,24 @@ public class Main {
      */
     public static void makeCoffee() {
         Recipe [] recipes = coffeeMaker.getRecipes();
+	      boolean recipeFound=false;
+      
         for(int i = 0; i < recipes.length; i++) {
+
         	if (recipes[i] != null) {
         		System.out.println((i+1) + ". " + recipes[i].getName() + "   $" + recipes[i].getPrice());
+            recipeFound=true;
         	}
         }
-        
-        int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
+      
+        if(recipeFound==false) {
+        	System.out.println("No recipe found!");
+        	mainMenu();
+        }
+	
+        else{	
+          int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
+
 
         if (recipeToPurchase != -1) {
 			String amountPaid = inputOutput("Please enter the amount you wish to pay ($)");
@@ -236,7 +247,7 @@ public class Main {
 				mainMenu();
 			}
 
-			int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
+          int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
 
 			if (change == amtPaid) {
 				System.out.println("Insufficient funds to purchase.");
@@ -280,11 +291,11 @@ public class Main {
     	int recipe = 0;
         try {
         	recipe = Integer.parseInt(userSelection) - 1;
-        	if (recipe < 0 || recipe > 2) {
+        	if (recipe < 0 || recipe > 3) {
         		throw new NumberFormatException();
         	}
         } catch (NumberFormatException e) {
-        	System.out.println("Please select a number from 1-3.");
+        	System.out.println("Please select a number from 1-4.");
         	recipe = -1;
         }
         return recipe;
