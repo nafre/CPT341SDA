@@ -107,8 +107,18 @@ public class Main {
         for(int i = 0; i < recipes.length; i++) {
         	if (recipes[i] != null) {
         		System.out.println((i+1) + ". " + recipes[i].getName());
+			Todelete();
+        	}
+		else {
+        		System.out.println(" There are no recipe to be deleted.\n");
+        		mainMenu();
+        		
         	}
         }
+        
+    }
+    public static void Todelete() {
+
         int recipeToDelete = recipeListSelection("Please select the number of the recipe to delete.");
         
 	    if(recipeToDelete < 0) {
@@ -124,7 +134,6 @@ public class Main {
         }
         mainMenu();
     }
-    
     /**
      * Edit recipe user interface the processes user input.
      */
