@@ -143,6 +143,11 @@ public class Main {
         	if (recipes[i] != null) {
         		System.out.println((i+1) + ". " + recipes[i].getName());
         	}
+        	else
+        	{
+        		System.out.println(" There are no recipe to be deleted.\n");
+        		mainMenu();
+        	}
         }
         int recipeToEdit = recipeListSelection("Please select the number of the recipe to edit.");
 
