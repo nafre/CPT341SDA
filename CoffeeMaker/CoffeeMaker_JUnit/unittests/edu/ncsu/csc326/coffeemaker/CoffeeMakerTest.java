@@ -119,4 +119,25 @@ public class CoffeeMakerTest extends TestCase {
 
 	}
 	
+	public void testEditRecipe1() throws RecipeException {
+
+		cm.addRecipe(r1);
+
+		Recipe newRecipe = new Recipe();
+		newRecipe.setPrice("1");
+		newRecipe.setAmtCoffee("2");
+		newRecipe.setAmtMilk("3");
+		newRecipe.setAmtSugar("4");
+		newRecipe.setAmtChocolate("5");
+
+		cm.editRecipe(0, newRecipe);
+		
+		assertEquals("Test Price", 1, cm.getRecipes()[0].getPrice());
+		assertEquals("Test Amount of Coffee", 2, cm.getRecipes()[0].getAmtCoffee());
+		assertEquals("Test Amount of Milk", 3, cm.getRecipes()[0].getAmtMilk());
+		assertEquals("Test Amount of Sugar", 4, cm.getRecipes()[0].getAmtSugar());
+		assertEquals("Test Amount of Chocolate", 5, cm.getRecipes()[0].getAmtChocolate());
+
+	}
+	
 }
