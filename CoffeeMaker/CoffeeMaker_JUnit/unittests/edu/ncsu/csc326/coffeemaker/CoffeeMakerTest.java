@@ -89,6 +89,12 @@ public class CoffeeMakerTest extends TestCase {
 			fail();
 		}
 	}
+	
+	public void testDeleteRecipe1() {
+		cm.addRecipe(r1);
+		cm.deleteRecipe(0);
+		assertNull("Check Recipe is Null", cm.getRecipes()[0]);
+	}
 
 	public void testEditRecipe() throws RecipeException {
 
