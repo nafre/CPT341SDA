@@ -140,16 +140,20 @@ public class Main {
      */
     public static void editRecipe() {
         Recipe [] recipes = coffeeMaker.getRecipes();
+        boolean flag=false; 
         for(int i = 0; i < recipes.length; i++) {
         	if (recipes[i] != null) {
         		System.out.println((i+1) + ". " + recipes[i].getName());
-        	}
-        	else
-        	{
-        		System.out.println(" There are no recipe to be deleted.\n");
-        		mainMenu();
+        		flag = true;
         	}
         }
+        
+        if(flag==false)
+    	{
+    		System.out.println(" There are no recipe to be editted.\n");
+    		mainMenu();
+    	}
+        
         int recipeToEdit = recipeListSelection("Please select the number of the recipe to edit.");
 
         try {
