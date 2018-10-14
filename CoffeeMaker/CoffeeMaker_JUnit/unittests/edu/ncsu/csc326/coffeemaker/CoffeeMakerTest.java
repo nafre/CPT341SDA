@@ -13,6 +13,7 @@ import junit.framework.TestCase;
 public class CoffeeMakerTest extends TestCase {
 
 	private CoffeeMaker cm;
+	private Inventory inventory;
 	private Recipe r1;
 	private Recipe r2;
 	private Recipe r3;
@@ -20,6 +21,7 @@ public class CoffeeMakerTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		cm = new CoffeeMaker();
+		inventory = new Inventory();
 
 		// Set up for r1
 		r1 = new Recipe();
@@ -131,7 +133,7 @@ public class CoffeeMakerTest extends TestCase {
 		newRecipe.setAmtChocolate("5");
 
 		cm.editRecipe(0, newRecipe);
-		
+
 		assertEquals("Test Price", 1, cm.getRecipes()[0].getPrice());
 		assertEquals("Test Amount of Coffee", 2, cm.getRecipes()[0].getAmtCoffee());
 		assertEquals("Test Amount of Milk", 3, cm.getRecipes()[0].getAmtMilk());
@@ -139,5 +141,8 @@ public class CoffeeMakerTest extends TestCase {
 		assertEquals("Test Amount of Chocolate", 5, cm.getRecipes()[0].getAmtChocolate());
 
 	}
-	
+
+	public void testCheckInventory() {
+		assertEquals("Coffee: "+ inventory.getCoffee() +"\n" + "Milk: " + inventory.getMilk() +"\n" + "Sugar: "+ inventory.getSugar() +"\n" + "Chocolate: " + inventory.getChocolate() +"\n",cm.checkInventory());
+	}
 }
