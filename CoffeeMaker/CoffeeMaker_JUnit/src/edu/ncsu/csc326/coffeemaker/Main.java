@@ -28,26 +28,28 @@ public class Main {
         System.out.println("4. Add inventory");
         System.out.println("5. Check inventory");
         System.out.println("6. Make coffee");
-        System.out.println("0. Exit\n");
+	    
+	    //just a testing
+        System.out.println("7. Exit\n");
         
         //Get user input
         try {
         	int userInput = Integer.parseInt(inputOutput("Please press the number that corresponds to what you would like the coffee maker to do."));
         	
-        	if (userInput >= 0 && userInput <=6) {
+        	if (userInput >= 0 && userInput <=7) {
 		        if (userInput == 1) addRecipe();
-		        else if (userInput == 2) deleteRecipe();
-		        else if (userInput == 3) editRecipe();
-		        else if (userInput == 4) addInventory();
-		        else if (userInput == 5) checkInventory();
-		        else if (userInput == 6) makeCoffee();
-		        else System.exit(0); 
+		        if (userInput == 2) deleteRecipe();
+		        if (userInput == 3) editRecipe();
+		        if (userInput == 4) addInventory();
+		        if (userInput == 5) checkInventory();
+		        if (userInput == 6) makeCoffee();
+		        if (userInput == 7) System.exit(0); //pull request testing
         	} else {
-        		System.out.println("Please enter a number from 0 - 6");
+        		System.out.println("Please enter a number from 0 - 7");
             	mainMenu();
         	}
         } catch (NumberFormatException e) {
-        	System.out.println("Please enter a number from 0 - 6");
+        	System.out.println("Please enter a number from 0 - 7");
         	mainMenu();
         }
     }
@@ -341,4 +343,3 @@ public class Main {
 	    mainMenu();
 	}
 }
-
