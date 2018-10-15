@@ -29,26 +29,26 @@ public class Main {
         System.out.println("6. Make coffee");
 	    
 	    //just a testing
-        System.out.println("0. Exit\n");
+        System.out.println("7. Exit\n");
         
         //Get user input
         try {
         	int userInput = Integer.parseInt(inputOutput("Please press the number that corresponds to what you would like the coffee maker to do."));
         	
-        	if (userInput >= 0 && userInput <=6) {
+        	if (userInput >= 0 && userInput <=7) {
 		        if (userInput == 1) addRecipe();
-		        else if (userInput == 2) deleteRecipe();
-		        else if (userInput == 3) editRecipe();
-		        else if (userInput == 4) addInventory();
-		        else if (userInput == 5) checkInventory();
-		        else if (userInput == 6) makeCoffee();
-		        else System.exit(0); 
+		        if (userInput == 2) deleteRecipe();
+		        if (userInput == 3) editRecipe();
+		        if (userInput == 4) addInventory();
+		        if (userInput == 5) checkInventory();
+		        if (userInput == 6) makeCoffee();
+		        if (userInput == 7) System.exit(0); //pull request testing
         	} else {
-        		System.out.println("Please enter a number from 0 - 6");
+        		System.out.println("Please enter a number from 0 - 7");
             	mainMenu();
         	}
         } catch (NumberFormatException e) {
-        	System.out.println("Please enter a number from 0 - 6");
+        	System.out.println("Please enter a number from 0 - 7");
         	mainMenu();
         }
     }
@@ -217,36 +217,52 @@ public class Main {
      * Make coffee user interface the processes input.
      */
     public static void makeCoffee() {
+    	
+    	Boolean list_is_empty = true;
         Recipe [] recipes = coffeeMaker.getRecipes();
+      
+        System.out.println("Coffee list:");
         for(int i = 0; i < recipes.length; i++) {
         	if (recipes[i] != null) {
-        		System.out.println((i+1) + ". " + recipes[i].getName() + "   $" + recipes[i].getPrice());
+        		
+        		System.out.print((i+1) + ". " + recipes[i].getName());
+        		System.out.println(" (Chocalate:" +recipes[i].getAmtChocolate()+", Coffee:"+recipes[i].getAmtCoffee()
+        				+" ,Milk:"+recipes[i].getAmtMilk()+" ,Sugar:"+recipes[i].getAmtSugar()+", Price:"+recipes[i].getPrice() +")");
+        		list_is_empty = false;
         	}
         }
         
-        int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
+        if(list_is_empty) {
+        	System.out.println("Current coffee list is empty \n");
+        	mainMenu();
+        }else {
+            System.out.println("\nYour Current Inventory :");
+            System.out.println(coffeeMaker.checkInventory());
+        	
+            int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
 
-        if (recipeToPurchase != -1) {
-			String amountPaid = inputOutput("Please enter the amount you wish to pay ($)");
-			int amtPaid = 0;
-			try {
-				amtPaid = Integer.parseInt(amountPaid);
-			} catch (NumberFormatException e) {
-				System.out.println("Please enter a positive integer");
-				mainMenu();
-			}
+            if (recipeToPurchase != -1) {
+    			String amountPaid = inputOutput("Please enter the amount you wish to pay");
+    			int amtPaid = 0;
+    			try {
+    				amtPaid = Integer.parseInt(amountPaid);
+    			} catch (NumberFormatException e) {
+    				System.out.println("Please enter a positive integer");
+    				mainMenu();
+    			}
 
-			int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
+    			int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
 
-			if (change == amtPaid) {
-				System.out.println("Insufficient funds to purchase.");
-			} else {
-				System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());
-			}
-			System.out.println("Your change is: $" + change + "\n");
-			mainMenu();
-		}
-		else mainMenu();
+    			if (change == amtPaid) {
+    				System.out.println("Insufficient funds to purchase.");
+    			} else {
+    				System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());
+    			}
+    			System.out.println("Your change is: " + change + "\n");
+    			mainMenu();
+    		}
+    		else mainMenu();
+        }
     }
     
     /**
@@ -280,11 +296,11 @@ public class Main {
     	int recipe = 0;
         try {
         	recipe = Integer.parseInt(userSelection) - 1;
-        	if (recipe < 0 || recipe > 2) {
+        	if (recipe < 0 || recipe > 3) {
         		throw new NumberFormatException();
         	}
         } catch (NumberFormatException e) {
-        	System.out.println("Please select a number from 1-3.");
+        	System.out.println("Please select a number from 1-4.");
         	recipe = -1;
         }
         return recipe;
@@ -300,3 +316,4 @@ public class Main {
 	    mainMenu();
 	}
 }
+
