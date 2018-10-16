@@ -157,7 +157,7 @@ public class Main {
         try {
         	// dummy line to test if edit is possible
 			// if recipeToEdit does not exist, throw exception, skip ahead
-			coffeeMaker.editRecipe(recipeToEdit, new Recipe());
+			coffeeMaker.editRecipe(recipeToEdit, recipes[recipeToEdit]);
         
 			if(recipeToEdit < 0) {
 				mainMenu();
