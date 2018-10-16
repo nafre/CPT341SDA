@@ -109,7 +109,7 @@ public class Main {
 			Todelete();
         	}
 		else {
-        		System.out.println(" There are no recipe to be deleted.\n");
+        		System.out.println("There are no recipe to be deleted.\n");
         		mainMenu();
         		
         	}
@@ -138,7 +138,7 @@ public class Main {
      */
     public static void editRecipe() {
         Recipe [] recipes = coffeeMaker.getRecipes();
-        boolean flag=false; 
+        boolean flag=false; //condition to test if there are any recipes
         for(int i = 0; i < recipes.length; i++) {
         	if (recipes[i] != null) {
         		System.out.println((i+1) + ". " + recipes[i].getName());
@@ -148,7 +148,7 @@ public class Main {
         
         if(flag==false)
     	{
-    		System.out.println(" There are no recipe to be editted.\n");
+    		System.out.println("There are no recipes to be edited.\n");
     		mainMenu();
     	}
         
