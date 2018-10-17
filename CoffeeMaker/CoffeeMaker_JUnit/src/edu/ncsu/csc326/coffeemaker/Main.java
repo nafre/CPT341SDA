@@ -214,7 +214,7 @@ public class Main {
         	coffeeMaker.addInventory(coffeeString, milkString, sugarString, chocolateString);
         	System.out.println("Inventory successfully added");
         } catch (InventoryException e) {
-        	System.out.println("Inventory was not added");
+        	System.out.println(e.getMessage());
         } finally {
         	mainMenu();
         }

@@ -56,12 +56,12 @@ public class Inventory {
     	try {
     		amtChocolate = Integer.parseInt(chocolate);
     	} catch (NumberFormatException e) {
-    		throw new InventoryException("Units of chocolate must be a positive integer");
+    		throw new InventoryException("Units of chocolate must be a positive integer and each addition must not be exceed 300 units");
     	}
 		if (amtChocolate >= 0 && amtChocolate < 300) {
 			Inventory.chocolate += amtChocolate;
 		} else {
-			throw new InventoryException("Units of chocolate must be a positive integer");
+			throw new InventoryException("Units of chocolate must be a positive integer and each addition must not be exceed 300 units");
 		}
     }
     
@@ -96,13 +96,13 @@ public class Inventory {
     	try {
     		amtCoffee = Integer.parseInt(coffee);
     	} catch (NumberFormatException e) {
-    		throw new InventoryException("Units of coffee must be a positive integer");
+    		throw new InventoryException("Units of coffee must be a positive integer and each addition must not be exceed 300 units");
     	}
 		if (amtCoffee >= 0 && amtCoffee <300) {
 			Inventory.coffee += amtCoffee;
 			
 		} else {
-			throw new InventoryException("Units of coffee must be a positive integer");
+			throw new InventoryException("Units of coffee must be a positive integer and each addition must not be exceed 300 units");
 		}
     }
     
@@ -137,12 +137,12 @@ public class Inventory {
     	try {
     		amtMilk = Integer.parseInt(milk);
     	} catch (NumberFormatException e) {
-    		throw new InventoryException("Units of milk must be a positive integer");
+    		throw new InventoryException("Units of milk must be a positive integer and each addition must not be exceed 300 units");
     	}
 		if (amtMilk >= 0 && amtMilk <300) {
 			Inventory.milk += amtMilk;
 		} else {
-			throw new InventoryException("Units of milk must be a positive integer");
+			throw new InventoryException("Units of milk must be a positive integer and each addition must not be exceed 300 units");
 		}
     }
     
@@ -177,12 +177,12 @@ public class Inventory {
     	try {
     		amtSugar = Integer.parseInt(sugar);
     	} catch (NumberFormatException e) {
-    		throw new InventoryException("Units of sugar must be a positive integer");
+    		throw new InventoryException("Units of sugar must be a positive integer and each addition must not be exceed 300 units");
     	}
 		if (amtSugar >= 0 && amtSugar <300) {
 			Inventory.sugar += amtSugar;
 		} else {
-			throw new InventoryException("Units of sugar must be a positive integer");
+			throw new InventoryException("Units of sugar must be a positive integer and each addition must not be exceed 300 units");
 		}
     }
     
