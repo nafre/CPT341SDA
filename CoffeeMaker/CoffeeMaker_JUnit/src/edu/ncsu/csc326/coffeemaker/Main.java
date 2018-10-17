@@ -15,7 +15,6 @@ import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
  */
 public class Main {
     private static CoffeeMaker coffeeMaker;
-
     /**
      * Prints the main menu and handles user input for 
      * main menu commands.
@@ -201,7 +200,7 @@ public class Main {
     public static void addInventory() {
 	    //Read in amt coffee
 	    String coffeeString = inputOutput("\nPlease enter the units of coffee to add: ");
-	    	    
+	    
 	    //Read in amt milk
 	    String milkString = inputOutput("\nPlease enter the units of milk to add: ");
 	    	    
