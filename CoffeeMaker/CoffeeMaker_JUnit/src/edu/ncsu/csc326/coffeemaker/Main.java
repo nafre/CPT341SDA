@@ -102,17 +102,25 @@ public class Main {
 	 */
     public static void deleteRecipe() {
         Recipe [] recipes = coffeeMaker.getRecipes();
+
+        if(recipes[0]==null){
+			System.out.println("There are no recipe to be deleted.\n");
+			mainMenu();
+
+		}
+
         for(int i = 0; i < recipes.length; i++) {
         	if (recipes[i] != null) {
         		System.out.println((i+1) + ". " + recipes[i].getName());
-			Todelete();
+
         	}
 		else {
-        		System.out.println("There are no recipe to be deleted.\n");
-        		mainMenu();
-        		
+				Todelete();
+
         	}
+
         }
+
         
     }
     public static void Todelete() {
