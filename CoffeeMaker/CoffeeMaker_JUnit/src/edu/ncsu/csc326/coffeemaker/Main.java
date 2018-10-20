@@ -22,11 +22,12 @@ public class Main {
     public static void mainMenu() {
 
         System.out.println("1. Add a recipe");
-        System.out.println("2. Delete a recipe");
-        System.out.println("3. Edit a recipe");
-        System.out.println("4. Add inventory");
-        System.out.println("5. Check inventory");
-        System.out.println("6. Make coffee");
+        System.out.println("2. View Recipe");   
+        System.out.println("3. Delete a recipe");
+        System.out.println("4. Edit a recipe");
+        System.out.println("5. Add inventory");
+        System.out.println("6. Check inventory");
+        System.out.println("7. Make coffee");
         System.out.println("0. Exit\n");
         
         //Get user input
@@ -35,18 +36,19 @@ public class Main {
         	
         	if (userInput >= 0 && userInput <=6) {
 		        if (userInput == 1) addRecipe();
-		        else if (userInput == 2) deleteRecipe();
-		        else if (userInput == 3) editRecipe();
-		        else if (userInput == 4) addInventory();
-		        else if (userInput == 5) checkInventory();
-		        else if (userInput == 6) makeCoffee();
+			else if (userInput == 2) printRecipe();
+		        else if (userInput == 3) deleteRecipe();
+		        else if (userInput == 4) editRecipe();
+		        else if (userInput == 5) addInventory();
+		        else if (userInput == 6) checkInventory();
+		        else if (userInput == 7) makeCoffee();
 		        else System.exit(0); 
         	} else {
-        		System.out.println("Please enter a number from 0 - 6");
+        		System.out.println("Please enter a number from 0 - 7");
             	mainMenu();
         	}
         } catch (NumberFormatException e) {
-        	System.out.println("Please enter a number from 0 - 6");
+        	System.out.println("Please enter a number from 0 - 7");
         	mainMenu();
         }
     }
@@ -296,7 +298,27 @@ public class Main {
     		else mainMenu();
         }
     }
+      // user view the recipes existed
+    public static void printRecipe() {
+    	Recipe [] recipes = coffeeMaker.getRecipes();
+    	 boolean flag=false; //condition to test if there are any recipes
+    		for(int i=0; i < recipes.length ; i++)
+    		{
+    			if(recipes[i]!=null) {
+    			System.out.print((i+1) + ". " + recipes[i].getName());
+        		System.out.println(" (Chocalate:" +recipes[i].getAmtChocolate()+", Coffee:"+recipes[i].getAmtCoffee()
+        				+" ,Milk:"+recipes[i].getAmtMilk()+" ,Sugar:"+recipes[i].getAmtSugar()+", Price:"+recipes[i].getPrice() +")\n");
+        		flag = true;
+        		mainMenu();
+    		}
     
+    	}
+    	        if(flag==false)
+    	    	{
+    	    		System.out.println("There are no recipes to be viewed.\n");
+    	    		mainMenu();
+    	    	}
+    }
     /**
      * Passes a prompt to the user and returns the user specified 
      * string.
