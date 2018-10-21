@@ -34,7 +34,7 @@ public class Main {
         try {
         	int userInput = Integer.parseInt(inputOutput("Please press the number that corresponds to what you would like the coffee maker to do."));
         	
-        	if (userInput >= 0 && userInput <=6) {
+        	if (userInput >= 0 && userInput <=7) {
 		        if (userInput == 1) addRecipe();
 			else if (userInput == 2) printRecipe();
 		        else if (userInput == 3) deleteRecipe();
